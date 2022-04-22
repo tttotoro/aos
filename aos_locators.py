@@ -3,6 +3,9 @@ fake = Faker(locale='en_CA')
 
 aos_url = 'https://advantageonlineshopping.com/#/'
 aos_register_url = 'https://advantageonlineshopping.com/#/register'
+facebook_url = 'https://www.facebook.com/MicroFocus'
+twitter_url = 'https://twitter.com/MicroFocus/'
+linkedin_url = 'https://www.linkedin.com/company/unavailable'
 new_username = fake.user_name()
 email = fake.email()
 password = fake.password()

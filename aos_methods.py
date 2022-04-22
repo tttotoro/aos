@@ -24,6 +24,95 @@ def setUp():
         driver1.quit()
 
 
+def validate_homepage_texts_links():
+    if driver1.current_url == locators.aos_url or driver1.title == '&nbsp;Advantage Shopping':
+        driver1.find_element(By.XPATH, '//*[@id="speakersTxt"]').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '//*[@id="tabletsTxt"]').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '//*[@id="laptopsTxt"]').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '//*[@id="miceTxt"]').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '//*[@id="headphonesTxt"]').is_displayed()
+        sleep(0.25)
+        print('SPEAKERS,TABLES,HEADPHONES,LAPTOPS and MICE are displayed!')
+#  check social media links  +  linkedin
+        linkedin = driver1.find_element(By.XPATH, '//*[@id="follow"]/a[3]/img')
+        print (f'The linkedin image is displayed: {linkedin.is_displayed()} and is clickable: {linkedin.is_enabled()}')
+        driver1.find_element(By.XPATH, '//*[@id="follow"]/a[3]/img').click()
+        driver1.switch_to.window(driver1.window_handles[1])
+        if driver1.current_url == locators.linkedin_url:
+            print('Linkedin link is displayed and clickable!')
+            sleep(3)
+        else:
+            print('Page is not found!')
+            driver1.close()
+            print('Linkedin link has been closed!')
+            driver1.switch_to.window(driver1.window_handles[0])
+#    facebook
+            facebook = driver1.find_element(By.XPATH, '//*[@id="follow"]/a[1]/img')
+            print(f' The Facebook image is displayed: {facebook.is_displayed()} and is clickable: {facebook.is_enabled()}')
+            driver1.find_element(By.XPATH, '//*[@id="follow"]/a[1]/img').click()
+            driver1.switch_to.window(driver1.window_handles[1])
+            if driver1.current_url == locators.facebook_url:
+                print('Facebook link is displayed and clickable!')
+                sleep(3)
+            else:
+                print('Page is not found!')
+                driver1.close()
+                print('Facebook link has been closed!')
+                driver1.switch_to.window(driver1.window_handles[0])
+#     twitter
+                twitter = driver1.find_element(By.XPATH, '//*[@id="follow"]/a[2]/img')
+                print(f' The twitter image is displayed: {twitter.is_displayed()} and is clickable: {twitter.is_enabled()}')
+                driver1.find_element(By.XPATH, '//*[@id="follow"]/a[2]/img').click()
+                driver1.switch_to.window(driver1.window_handles[1])
+                if driver1.current_url == locators.twitter_url:
+                    print('Twitter link is displayed and clickable!')
+                    sleep(3)
+                else:
+                    print('Page is not found!')
+                    driver1.close()
+                    print('Twitter link has been closed!')
+                    driver1.switch_to.window(driver1.window_handles[0])
+
+
+def validate_top_nav_menu():
+    if driver1.current_url == locators.aos_url or driver1.title == '&nbsp;Advantage Shopping':
+        driver1.find_element(By.XPATH, '/html/body/header/nav/div/a/span[1]').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '/html/body/header/nav/ul/li[8]/a').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '/html/body/header/nav/ul/li[7]/a').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '/html/body/header/nav/ul/li[6]/a').is_displayed()
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '/html/body/header/nav/ul/li[5]/a').is_displayed()
+        sleep(0.25)
+        print('MAIN LOGO, OUR PRODUCTS, SPECIAL OFFER, POPULAR ITEMS AND CONTACT US are displayed!')
+
+
+def validate_contact_us_form():
+    if driver1.current_url == locators.aos_url or driver1.title == '&nbsp;Advantage Shopping':
+        Select(driver1.find_element(By.XPATH, '//*[@id="supportCover"]/div[2]/sec-form/div[1]/div/sec-view[1]/div/select')).select_by_visible_text("Laptops")
+        sleep(0.25)
+        Select(driver1.find_element(By.XPATH, '//*[@id="supportCover"]/div[2]/sec-form/div[1]/div/sec-view[2]/div/select')).select_by_visible_text("HP Pavilion 15z Laptop")
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '//*[@id="supportCover"]/div[2]/sec-form/div[1]/div/sec-view[3]/div/input').send_keys(locators.email)
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '//*[@id="supportCover"]/div[2]/sec-form/div[2]/div/sec-view/div/textarea').send_keys(locators.phone_number)
+        sleep(0.25)
+        driver1.find_element(By.XPATH, '//*[@id="send_btnundefined"]').click()
+        sleep(0.25)
+        if driver1.find_element(By.XPATH, '//*[@id="registerSuccessCover"]/div/p').is_displayed():
+            sleep(0.25)
+            print('MAIN LOGO,SPEAKERS,TABLES,HEADPHONES,LAPTOPS and MICE are displayed!')
+            if driver1.find_element(By.XPATH, '//*[@id="registerSuccessCover"]/div/a').click():
+                sleep(0.25)
+                print('CONTINUE SHOPPING button is clickable and displayed!')
+
+
 def create_new_account():
     if driver1.current_url == locators.aos_url or driver1.title == '&nbsp;Advantage Shopping':
         driver1.find_element(By.ID, 'menuUser').click()
@@ -109,6 +198,12 @@ def tearDown():
 
 
 setUp()
+
+validate_homepage_texts_links()
+
+validate_top_nav_menu()
+
+validate_contact_us_form()
 
 create_new_account()
 
