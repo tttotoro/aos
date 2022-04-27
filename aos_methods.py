@@ -121,58 +121,25 @@ def check_social_network_linkedin():
         driver1.switch_to.window(driver1.window_handles[0])
         print('Finally we validated all the TEXTS, LINKS, BUTTONS and CONTACT US successfully ')
 
-#         linkedin = driver1.find_element(By.XPATH, '//img[@name="follow_linkedin"]')
-#         print(f'The linkedin image is displayed: {linkedin.is_displayed()} and is clickable: {linkedin.is_enabled()}')
-#         driver1.find_element(By.XPATH, '//img[@name="follow_linkedin"]').click()
-#         driver1.switch_to.window(driver1.window_handles[1])
-#         if driver1.current_url == locators.linkedin_url:
-#             print('Linkedin link is displayed and clickable!')
-#             sleep(3)
-#         else:
-#             print('Page is not found!')
-#             driver1.close()
-#             print('Linkedin link has been closed!')
-#             driver1.switch_to.window(driver1.window_handles[0])
-# #    facebook
-#             facebook = driver1.find_element(By.XPATH, '//img[@name="follow_twitter"]')
-#             print(f' The Facebook image is displayed: {facebook.is_displayed()} and is clickable: {facebook.is_enabled()}')
-#             driver1.find_element(By.XPATH, '//img[@name="follow_twitter"]').click()
-#             driver1.switch_to.window(driver1.window_handles[1])
-#             if driver1.current_url == locators.facebook_url:
-#                 print('Facebook link is displayed and clickable!')
-#                 sleep(3)
-#             else:
-#                 print('Page is not found!')
-#                 driver1.close()
-#                 print('Facebook link has been closed!')
-#                 driver1.switch_to.window(driver1.window_handles[0])
-# #     twitter
-#                 twitter = driver1.find_element(By.XPATH, '//img[@name="follow_twitter"]')
-#                 print(f' The twitter image is displayed: {twitter.is_displayed()} and is clickable: {twitter.is_enabled()}')
-#                 driver1.find_element(By.XPATH, '//img[@name="follow_twitter"]').click()
-#                 driver1.switch_to.window(driver1.window_handles[1])
-#                 if driver1.current_url == locators.twitter_url:
-#                     print('Twitter link is displayed and clickable!')
-#                     sleep(3)
-#                 else:
-#                     print('Page is not found!')
-#                     driver1.close()
-#                     print('Twitter link has been closed!')
-#                     driver1.switch_to.window(driver1.window_handles[0])
-
 
 def validate_contact_us_form():
     print(f'------------------------validate contact us form------------------------------')
     if driver1.current_url == locators.aos_url or driver1.title == locators.aos_homepage_title:
         driver1.find_element(By.XPATH, '//*[@id="supportCover"]/div[2]/h1').is_displayed()
         print('CONTACT US form is displayed on the screen')
-        Select(driver1.find_element(By.XPATH, '//select[@name="categoryListboxContactUs"]')).select_by_visible_text("Laptops")
+        Select(driver1.find_element(By.XPATH, '//select[@name="categoryListboxContactUs"]')).\
+            select_by_visible_text("Laptops")
         sleep(0.25)
-        Select(driver1.find_element(By.XPATH, '//select[@name="productListboxContactUs"]')).select_by_visible_text("HP Pavilion 15z Laptop")
+        Select(driver1.find_element(By.XPATH, '//select[@name="productListboxContactUs"]')).\
+            select_by_visible_text("HP Pavilion 15z Laptop")
         sleep(0.25)
         driver1.find_element(By.NAME, 'emailContactUs').send_keys(locators.email)
         sleep(0.25)
-        driver1.find_element(By.NAME, 'subjectTextareaContactUs').send_keys('Dear Sir/Madam\n, The item that I have purchased, has been charged twice,could you please check from your end and return my money back.\n Thanks')
+        driver1.find_element(By.NAME, 'subjectTextareaContactUs').send_keys('Dear Sir/Madam\n, '
+                                                                            'The item that I have purchased, '
+                                                                            'has been charged twice,'
+                                                                            'could you please check from your '
+                                                                            'end and return my money back.\n Thanks')
         sleep(0.25)
         driver1.find_element(By.ID, 'send_btnundefined').click()
         sleep(2)
